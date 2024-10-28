@@ -17,7 +17,7 @@
             padding: 10px 0;
             text-align: center;
         }
-        section {
+        section, .info-section {
             margin: 20px 0;
             background-color: white;
             padding: 20px;
@@ -33,6 +33,33 @@
             font-size: 0.9em;
             color: #555;
         }
+        .dropdown {
+            margin-top: 10px;
+        }
+        .dropdown-content {
+            display: none;
+            background-color: #f9f9f9;
+            min-width: 200px;
+            position: absolute;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 5px;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 10px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        .show {
+            display: block;
+        }
+        .info-section {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -43,42 +70,76 @@
 
 <section>
     <h2>Tipos de Discriminación</h2>
-    <ul>
-        <li><strong>Racial:</strong> Discriminación basada en la raza o etnia.</li>
-        <li><strong>De Género:</strong> Desigualdad y prejuicios basados en el género.</li>
-        <li><strong> Económica:</strong> Discriminación por el nivel socioeconómico de una persona.</li>
-        <li><strong>Edad:</strong> Discriminación contra personas de ciertas edades.</li>
-        <li><strong>Discapacidad:</strong> Prejuicios hacia personas con discapacidades.</li>
-    </ul>
+    <div class="dropdown">
+        <button onclick="toggleDropdown()">Types of discrimination</button>
+        <div id="dropdownMenu" class="dropdown-content">
+            <a href="#" onclick="showInfo('age')">Age</a>
+            <a href="#" onclick="showInfo('gender')">Gender</a>
+            <a href="#" onclick="showInfo('racial')">Racial</a>
+            <a href="#" onclick="showInfo('religion')">Religion</a>
+            <a href="#" onclick="showInfo('sexualOrientation')">Sexual orientation</a>
+            <a href="#" onclick="showInfo('disability')">Disability or illness</a>
+            <a href="#" onclick="showInfo('linguistic')">Linguistic discrimination</a>
+            <a href="#" onclick="showInfo('ideology')">Discrimination by ideology</a>
+            <a href="#" onclick="showInfo('origin')">Discrimination by origin or race</a>
+            <a href="#" onclick="showInfo('marital')">Marital status</a>
+            <a href="#" onclick="showInfo('appearance')">Appearance</a>
+            <a href="#" onclick="showInfo('socialClass')">Social class</a>
+            <a href="#" onclick="showInfo('locality')">Locality</a>
+            <a href="#" onclick="showInfo('skinColor')">Skin color</a>
+        </div>
+    </div>
 </section>
 
-<section>
-    <h2>Cómo Identificar la Discriminación</h2>
-    <p>La discriminación puede manifestarse de diversas maneras, como:</p>
-    <ul>
-        <li>Comentarios despectivos o burlas.</li>
-        <li>Exclusión de actividades o grupos.</li>
-        <li>Negación de oportunidades laborales o educativas.</li>
-    </ul>
-</section>
+<div class="info-section" id="info-age">
+    <h2>Age Discrimination</h2>
+    <p>La discriminación por edad es el trato desigual basado en la edad de una persona...</p>
+    <p><strong>Cómo evitarlo:</strong> Respeta a personas de todas las edades y evita estereotipos.</p>
+</div>
 
-<section>
-    <h2>Consejos para Evitar la Discriminación</h2>
-    <p>Es importante actuar para evitar la discriminación:</p>
-    <ul>
-        <li>Educarse sobre la diversidad y la inclusión.</li>
-        <li>Escuchar y apoyar a las personas afectadas.</li>
-        <li>Denunciar actos de discriminación.</li>
-        <li>Promover un ambiente de respeto y aceptación.</li>
-    </ul>
-</section>
+<div class="info-section" id="info-gender">
+    <h2>Gender Discrimination</h2>
+    <p>La discriminación de género implica desigualdades basadas en el género...</p>
+    <p><strong>Cómo evitarlo:</strong> Promueve la igualdad de oportunidades independientemente del género.</p>
+</div>
+
+<div class="info-section" id="info-racial">
+    <h2>Racial Discrimination</h2>
+    <p>La discriminación racial es el trato desfavorable hacia alguien por su raza o etnia...</p>
+    <p><strong>Cómo evitarlo:</strong> Promueve la inclusión y la empatía hacia todas las etnias.</p>
+</div>
+
+<!-- Agrega aquí más secciones similares para otros tipos de discriminación -->
 
 <footer>
     <p>&copy; 2024 App de Sensibilización sobre la Discriminación. Todos los derechos reservados.</p>
 </footer>
 
+<script>
+    function toggleDropdown() {
+        document.getElementById("dropdownMenu").classList.toggle("show");
+    }
+
+    function showInfo(type) {
+        const sections = document.querySelectorAll('.info-section');
+        sections.forEach(section => section.style.display = 'none');
+        
+        document.getElementById('info-' + type).style.display = 'block';
+    }
+
+    window.onclick = function(event) {
+        if (!event.target.matches('button')) {
+            const dropdowns = document.getElementsByClassName("dropdown-content");
+            for (let i = 0; i < dropdowns.length; i++) {
+                const openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>
+
 </body>
 </html>
-
-
 
